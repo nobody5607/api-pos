@@ -10,6 +10,6 @@ const schema = mongoose.Schema(
     timestamps: true,
   }
 );
-const Brand = mongoose.model("Brand", schema);
+const Unit = mongoose.model("Unit", schema);
 
-export default Brand;
+export default Unit;

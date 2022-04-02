@@ -1,0 +1,152 @@
+{
+    "branchs": [
+        {
+            "name": "สาขา A" 
+        },{
+            "name": "สาขา B" 
+        },{
+            "name": "สาขา C" 
+        }    
+    ],
+    "brands": [
+        {
+            "name": "แบรนด์ A" 
+        },{
+            "name": "แบรนด์ B" 
+        },{
+            "name": "แบรนด์ C" 
+        }    
+    ],
+    "categorys": [
+        {
+            "name": "หมู" 
+        },{
+            "name": "ไก่" 
+        },{
+            "name": "เนื้อวัว" 
+        }    
+    ], 
+    "products": [
+        {
+             "name": "สามชั้น",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_20220401030417va83s.jpg",
+             "cost": 150,
+             "price": 180,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true 
+         }
+         ,{
+             "name": "สันคอหมู",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_20220401025748dqbew.jpg",
+             "cost": 150,
+             "price": 180,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true 
+         },{
+             "name": "สันนอกหมู",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_20220401024828dacls.jpg",
+             "cost": 150,
+             "price": 180,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true 
+         }
+         ,{
+             "name": "สะโพกหมู",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_20220331033935byp99.jpg",
+             "cost": 160,
+             "price": 190,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true,
+             "sale": "",
+             "customer": ""
+         },{
+             "name": "สะโพกหมูติดหนัง",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_20220330065719mpt6r.jpg",
+             "cost": 160,
+             "price": 190,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true 
+         },{
+             "name": "ซี่โครงหมู",
+             "image": "https://image.katexoxo.com/uploads/images/kxo_202203300620015h2bo.jpg",
+             "cost": 120,
+             "price": 160,
+             "brand":"6247d9d6402f7abfaea473fc",
+             "branch":"6247d9d6402f7abfaea473f8",
+             "categorys": ["6247d62a5fd82f5908f840e8"],
+             "stock": 10,
+             "units": "6247db8e12972514b954c64d",
+             "weight": 10.0,
+             "barcode_code": "0001",
+             "cost_discount_price": 0,
+             "min_stock": 5,
+             "enable_rounding": true 
+         }
+    ],
+    "users":[
+        {
+            "email": "chanpan.nuttaphon1993@gmail.com", 
+            "password": "$2b$10$.2TexlxbQZ09Ua2fXzWKaeByzzp67m6c/5FXRVfL2BvVIg.PYxeUK",
+            "name": "Admin Service",  
+            "permission": "admin",  
+            "phone": "0953256562",
+            "level":10
+        },{
+            "email": "customer1@gmail.com", 
+            "password": "$2b$10$.2TexlxbQZ09Ua2fXzWKaeByzzp67m6c/5FXRVfL2BvVIg.PYxeUK",
+            "name": "customer1",  
+            "permission": "customer",  
+            "phone": "0953256562",
+            "level":10
+        }
+    ],
+    "units":[
+        {
+            "name": "กก." 
+        },{
+            "name": "ชิ้น" 
+        },{
+            "name": "แพ็ค" 
+        } 
+    ] 
+}

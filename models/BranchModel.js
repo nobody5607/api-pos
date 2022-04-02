@@ -10,6 +10,6 @@ const schema = mongoose.Schema(
     timestamps: true,
   }
 );
-const Brand = mongoose.model("Brand", schema);
+const Branch = mongoose.model("Branch", schema);
 
-export default Brand;
+export default Branch;
