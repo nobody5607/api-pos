@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
-    "deploy":"node --experimental-modules --es-module-specifier-resolution=node index.js"
+    "deploy":"node --experimental-modules --es-module-specifier-resolution=node index.js",
+    "pm2": "pm2 start npm --name \"cn-pos-api-5001\" -- start"
   },
   "keywords": [],
   "author": "",
