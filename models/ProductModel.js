@@ -3,6 +3,10 @@ import mongoosePaginate from "mongoose-paginate-v2";
 
 const productSchema = mongoose.Schema(
   {
+    user_create: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     branch: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Branch",
@@ -25,12 +29,11 @@ const productSchema = mongoose.Schema(
       ref: "Brand",
     },
 
-    categorys: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-      },
-    ],
+    categorys: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+
     stock: {
       type: Number,
     },

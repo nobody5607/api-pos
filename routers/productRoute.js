@@ -1,13 +1,31 @@
 import express from "express";
 import { Auth } from "../middlewere/Auth";
-import Category from "../models/CategoryModel";
 import Product from "../models/ProductModel";
+import Unit from "../models/UnitModel";
+import Category from "./../models/CategoryModel";
+import Brand from "./../models/BrandModel";
 const productRoute = express.Router();
 const getPagination = (page, size) => {
   const limit = size ? +size : 1000;
   const offset = page ? page * limit : 0;
   return { limit, offset };
 };
+productRoute.get("/attribute", async (req, res) => {
+  try {
+    const categorys = await Category.find();
+    const units = await Unit.find();
+    const brands = await Brand.find();
+    const output = {
+      categorys: categorys,
+      units: units,
+      brands: brands,
+    };
+
+    return res.json(output);
+  } catch (error) {
+    res.json(error);
+  }
+});
 productRoute.get("/barcode/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -51,7 +69,7 @@ productRoute.get("/", async (req, res) => {
     res.json(error);
   }
 });
-productRoute.get("/:id", Auth, async (req, res) => {
+productRoute.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Product.findById(id).populate(
@@ -65,23 +83,12 @@ productRoute.get("/:id", Auth, async (req, res) => {
 });
 productRoute.post("/", Auth, async (req, res) => {
   try {
-    const dataObj = {
-      name: "",
-      image: "",
-      cost: 50,
-      price: 100,
-      categorys: [],
-      stock: 100,
-      units: [],
-      weight: 10.0,
-      barcode_code: "0001",
-      cost_discount_price: 0,
-      min_stock: 5,
-      enable_rounding: true,
-      sale: "",
-      customer: "",
-    };
-    const result = await Product.insertMany(dataObj);
+    let data = req.fields;
+    let user = req.user;
+    data["user_create"] = user.id;
+    //return res.json(user);
+
+    const result = await Product.insertMany(data);
     res.json(result);
   } catch (error) {
     res.json(error);
