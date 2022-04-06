@@ -7,6 +7,7 @@ import { connectDatabase } from "./config/MongoDb";
 import importRoute from "./routers/importRoute";
 import productRoute from "./routers/productRoute";
 import orderRoute from "./routers/orderRoute";
+import authRoute from "./routers/authRoute";
 dotenv.config();
 connectDatabase(); //connection db
 app.use(cors());
@@ -17,6 +18,7 @@ const PORT = process.env.APP_PORT || 3000;
 app.get("/", async (req, res) => {
   res.send("cn-pos");
 });
+app.use("/api/auth/", authRoute);
 app.use("/api/import/", importRoute);
 app.use("/api/product", productRoute);
 app.use("/api/order", orderRoute);
