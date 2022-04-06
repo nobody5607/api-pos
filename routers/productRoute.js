@@ -4,6 +4,7 @@ import Product from "../models/ProductModel";
 import Unit from "../models/UnitModel";
 import Category from "./../models/CategoryModel";
 import Brand from "./../models/BrandModel";
+import { uploadImage } from "./../utils/utils";
 const productRoute = express.Router();
 const getPagination = (page, size) => {
   const limit = size ? +size : 1000;
@@ -69,13 +70,15 @@ productRoute.get("/", async (req, res) => {
     res.json(error);
   }
 });
-productRoute.get("/:id", async (req, res) => {
+productRoute.get("/:id", Auth, async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await Product.findById(id).populate(
+    const result = await Product.findById(id).populate([
+      { path: "branch", select: ["name"] },
       { path: "units", select: ["name"] },
-      { path: "categorys", select: ["name"] }
-    );
+      { path: "categorys", select: ["name"] },
+      { path: "brand", select: ["name"] },
+    ]);
     res.json(result);
   } catch (error) {
     res.json(error);
@@ -85,11 +88,31 @@ productRoute.post("/", Auth, async (req, res) => {
   try {
     let data = req.fields;
     let user = req.user;
+    let productImages = "";
     data["user_create"] = user.id;
-    //return res.json(user);
-
-    const result = await Product.insertMany(data);
-    res.json(result);
+    if (Object.keys(req.files).length > 0) {
+      for (let i in req.files) {
+        let result = await uploadImage({ file: req.files[i] });
+        productImages = `${process.env.IMAGE_URL}/uploads/images/${result}`;
+      }
+      data["image"] = productImages;
+    }
+    if (data.id) {
+      const result = await Product.findOneAndUpdate(
+        { _id: data.id },
+        {
+          $set: data,
+        },
+        {
+          upsert: true,
+          returnDocument: "after", // this is new !
+        }
+      );
+      return res.json(result);
+    } else {
+      let result = await Product.insertMany(data);
+      return res.json(result);
+    }
   } catch (error) {
     res.json(error);
   }

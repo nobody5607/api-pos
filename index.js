@@ -8,6 +8,7 @@ import importRoute from "./routers/importRoute";
 import productRoute from "./routers/productRoute";
 import orderRoute from "./routers/orderRoute";
 import authRoute from "./routers/authRoute";
+import attributeRoute from "./routers/attributeRoute";
 dotenv.config();
 connectDatabase(); //connection db
 app.use(cors());
@@ -22,4 +23,6 @@ app.use("/api/auth/", authRoute);
 app.use("/api/import/", importRoute);
 app.use("/api/product", productRoute);
 app.use("/api/order", orderRoute);
+
+app.use("/api/attribute", attributeRoute);
 app.listen(PORT, () => console.log(`Start ... http://localhost:${PORT}`));
