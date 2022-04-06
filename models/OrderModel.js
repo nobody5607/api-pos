@@ -35,6 +35,13 @@ const orderSchema = mongoose.Schema(
       type: String,
       default: "ATM", //atm,credit,prompay
     },
+    payment_all: {
+      type: Number, //ยอดเงินที่จ่ายทั้งหมด
+    },
+    payment_return: {
+      type: Number, //เงินทอน
+    },
+
     payment_result: {
       resultCode: { type: String },
       amount: { type: String },
