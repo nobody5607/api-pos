@@ -6,6 +6,7 @@ import formidableExpress from "express-formidable";
 import { connectDatabase } from "./config/MongoDb";
 import importRoute from "./routers/importRoute";
 import productRoute from "./routers/productRoute";
+import orderRoute from "./routers/orderRoute";
 dotenv.config();
 connectDatabase(); //connection db
 app.use(cors());
@@ -18,4 +19,5 @@ app.get("/", async (req, res) => {
 });
 app.use("/api/import/", importRoute);
 app.use("/api/product", productRoute);
+app.use("/api/order", orderRoute);
 app.listen(PORT, () => console.log(`Start ... http://localhost:${PORT}`));
