@@ -17,9 +17,9 @@ customerRoute.get("/search/:id", Auth, async (req, res) => {
     if (!result) {
       res.json({ status: "warning", data: [], message: "ไม่พบข้อมูลลูกค้า" });
     }
-    res.json({ status: "success", data: result ? result : [] });
+    return res.json({ status: "success", data: result ? result : [] });
   } catch (error) {
-    res.json({ status: "error", message: error.message });
+    return res.json({ status: "error", message: error.message });
   }
 });
 
