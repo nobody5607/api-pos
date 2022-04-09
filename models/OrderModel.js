@@ -9,6 +9,7 @@ const orderSchema = mongoose.Schema(
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      default: "6251e27d93a023530f06d0ae",
     },
     orderItems: [
       {

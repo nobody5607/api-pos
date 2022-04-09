@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema(
       type: String,
     },
     level: {
-      type: Number 
+      type: Number,
     },
   },
   {

@@ -3,6 +3,7 @@ import { Auth } from "../middlewere/Auth";
 import Order from "../models/OrderModel";
 import { uploadImage } from "../utils/utils";
 import moment from "moment";
+import Product from "../models/ProductModel";
 const orderRoute = express.Router();
 
 const getPagination = (page, size) => {
@@ -43,34 +44,47 @@ orderRoute.get("/", async (req, res) => {
 orderRoute.get("/:id", Auth, async (req, res) => {
   try {
     let { id } = req.params;
-    let order = await Order.findById(id);
-    let output = [];
-    res.json(output);
+    let result = await Order.findById(id);
+    if (!result) {
+      res.json({ status: "warning", data: [], message: "ไม่พบข้อมูลลูกค้า" });
+    }
+    res.json({ status: "success", data: result ? result : [] });
   } catch (error) {
     res.json({ message: error.message });
     console.log(error);
   }
 });
-orderRoute.post("/", async (req, res) => {
+orderRoute.post("/", Auth, async (req, res) => {
   try {
     let { data } = req.fields;
     if (data) {
       data = JSON.parse(data);
-      //   let createBy = {
-      //     id: req.user.id,
-      //     name: `${req.user.firstname} ${req.user.lastname}`,
-      //     email: req.user.email,
-      //     phone: req.user.phone,
-      //   };
-      //   data["user"] = createBy;
+      data["sell"] = req.user.id;
+
+      //update stock
+      if (data.orderItems) {
+        for (let i of data.orderItems) {
+          const productSearch = await Product.findById(i.product_id);
+          const product = await Product.findOneAndUpdate(
+            { _id: i.product_id },
+            {
+              $set: { stock: productSearch.stock - i.product_qty },
+            },
+            {
+              upsert: true,
+              returnDocument: "after", // this is new !
+            }
+          );
+        }
+      }
+
       const resultOrder = await Order.create(data);
-      res.json(resultOrder);
+      return res.json({ status: "success", data: resultOrder });
     } else {
-      res.json({ message: "ไม่พบข้อมูล" });
+      return res.json({ status: "error", message: "ไม่พบข้อมูล" });
     }
   } catch (error) {
-    res.json({ message: error.message });
-    console.log(error);
+    res.json({ status: "error", message: error.message });
   }
 });
 
