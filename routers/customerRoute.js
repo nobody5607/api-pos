@@ -15,7 +15,11 @@ customerRoute.get("/search/:id", Auth, async (req, res) => {
     let { id } = req.params;
     let result = await Customer.findOne({ member_id: id });
     if (!result) {
-      res.json({ status: "warning", data: [], message: "ไม่พบข้อมูลลูกค้า" });
+      return res.json({
+        status: "warning",
+        data: [],
+        message: "ไม่พบข้อมูลลูกค้า",
+      });
     }
     return res.json({ status: "success", data: result ? result : [] });
   } catch (error) {
